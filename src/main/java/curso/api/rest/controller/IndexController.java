@@ -20,6 +20,14 @@ public class IndexController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@GetMapping(value = "/{id}/codigo-venda/{venda}", produces = "application/pdf")
+	public ResponseEntity<Usuario> relatorio(@PathVariable Long id, @PathVariable Long venda) {
+	
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		
+		return ResponseEntity.ok(usuario.get());
+	}
 
 	/* Serviço RESTful */
 	@GetMapping("/{id}")
